@@ -26,20 +26,10 @@ export default defineConfig(({ mode }) => {
       }
     } : {
       rollupOptions: {
-        input: {
-          main: './index.html',
-          export: './src/exports/export-embed.jsx',
-          pageExport: './src/exports/page-export.jsx',
-        },
         output: {
-          entryFileNames: "[name].js",
-          chunkFileNames: "[name].js",
-          manualChunks(id, { getModuleInfo }) {
-            const moduleInfo = getModuleInfo(id);
-            if (moduleInfo?.isEntry) {
-              return id;
-            }
-          },
+          format: "iife",
+          entryFileNames: "app.js",
+          assetFileNames: "assets/[name].[ext]",
         },
       },
       cssCodeSplit: false,
